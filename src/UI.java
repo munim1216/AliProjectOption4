@@ -18,7 +18,6 @@ public class UI implements ActionListener {
         WINDOW = new JFrame();
         WINDOW.setSize(900, 800);
         WINDOW.setResizable(false);
-        WINDOW.setVisible(true);
         WINDOW.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         buttonPanel = new JPanel();
@@ -30,15 +29,12 @@ public class UI implements ActionListener {
         closeGame = new JButton();
         formatButton(closeGame);
 
-        spritePanel.setBounds(0, 0, 900, 650);
-        spritePanel.setLayout(new BorderLayout());
-        spritePanel.setSize(900, 800);
-        spritePanel.setLayout(new GridLayout());
-        spritePanel.setVisible(true);
-        spritePanel.add(startGame);
-        spritePanel.add(closeGame);
-
-        WINDOW.add(spritePanel);
+        startPanel.setLayout(new GridLayout(1, 2));
+        startPanel.add(startGame);
+        startPanel.add(closeGame);
+        WINDOW.add(startPanel);
+        startPanel.setVisible(true);
+        WINDOW.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent ae) {
