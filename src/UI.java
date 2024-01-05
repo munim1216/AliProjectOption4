@@ -1,7 +1,4 @@
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,8 +13,9 @@ public class UI implements ActionListener {
     private JButton action3;
     private JButton action4;
     private JPanel buttonPanel;
+    private JLayeredPane buttonLayer;
     private JPanel spritePanel;
-    private JPanel startPanel;
+    private JLayeredPane spriteLayer;
 
     public UI () {
         WINDOW = new JFrame();
@@ -28,8 +26,10 @@ public class UI implements ActionListener {
 
         createButtonPanel();
         spritePanel = new JPanel();
-        startPanel = new JPanel();
-
+        spriteLayer = new JLayeredPane();
+        spritePanel.add(spriteLayer);
+        
+        
         startGame = new JButton();
         formatButton(startGame);
         startGame.setActionCommand("startGame");
@@ -38,15 +38,16 @@ public class UI implements ActionListener {
         formatButton(closeGame);
         closeGame.setActionCommand("closeGame");
 
-        startPanel.setLayout(new GridLayout(1, 2,30,0));
-        startPanel.add(startGame);
-        startPanel.add(closeGame);
+        spritePanel.setLayout(new GridLayout(1, 2,30,0));
+        spriteLayer.add(startGame, 0);
+        spriteLayer.add(closeGame, 1);
 
-        WINDOW.add(startPanel, BorderLayout.CENTER);
+        WINDOW.add(spritePanel, BorderLayout.CENTER);
         WINDOW.add(spritePanel, BorderLayout.NORTH);
         WINDOW.add(buttonPanel, BorderLayout.SOUTH);
 
-        startPanel.setVisible(true);
+        spriteLayer.setVisible(true);
+        spritePanel.setVisible(true);
         WINDOW.setVisible(true);
     }
 
